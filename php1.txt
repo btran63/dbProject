@@ -1,0 +1,15 @@
+//admin login
+<?php
+function login($username){
+$nameFromForm = $_POST['EMAIL'];
+$hash = "";
+$conn = mysql_connect(73.183.164.56,aaron,iknowyouarebutwhoami);//close after
+$nameFromDb = 'SELECT username, hash FROM Admins WHERE $nameFromForm == $hash';
+mysql_select_db('gymnastics');
+$retval = mysql_query($sql,$conn);//return value from query
+if ($nameFromForm == $nameFromDb)
+{
+//login
+}
+}
+?>
