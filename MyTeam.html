@@ -1,0 +1,67 @@
+<!doctype html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<link rel="stylesheet" type="Ttext/css"/>
+<link rel="stylesheet" type = "text/css" href = "login.css">
+<html>
+<head>
+    <title>National Gymnastic Meet My Team</title>
+
+</head>
+<body>
+    <header><h1>My Team</h1></header>
+			<ul id="menu">
+			<li><a class="active" href="Homepage.html">Home</a></li>
+			<li><a href="logIn.html">Login</a></li>
+			<li><a href="Registration.html">Registration</a></li>
+			<li><a href="Contact.html">Contact</a></li>
+			<li><a href="myteam.html">MyTeam</a><li>
+            <a href="Report.html">Report</a>
+			</ul>
+			<br><br>
+			
+			<h2>Team Name</h2>
+            <table name="teamComposition" id="teamTable" style="width 100%"> 
+                <tr>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Birthday</td>
+                    <td>Height</td>
+                    <td>Weight</td>
+                </tr>
+            </table>
+			<h3>Register Team Members</h3>
+<section class="loginform cf">
+<table name="teamComposition" style="width 100%"> 
+</table>
+<form name="Register Team Members" action="submit.php" method="post" accept-charset="utf-8">
+    <ul style = "list-style: none;">
+		<li><label for="teammemberfirstname">First Name: </label>
+        <input type="firstname" id="fname" name="teammemberfirstname" placeholder="FirstName" required></li><br>
+		<li><label for="teammemberlastname">Last Name: </label>
+        <input type="lastname" id="lname" name="teammemberlastname" placeholder="LastName" required></li><br>
+
+
+		<p4><u>Date of birth</u></p4><br><br>
+		<li><label for="Month">Month: </label>
+		<input type ="date" name="birthmonth" id="birthMonth" placeholder ="MM" required></li><br>    
+
+		<li><label for="Day">Day: </label>
+		<input type ="date" name="birthdate" id="birthDay" placeholder ="DD" required></li><br>
+
+		<li><label for="Year">Year: </label>
+		<input type ="date" name="birthyear" id="birthYear" placeholder ="YYYY" required></li><br>
+
+		<li><label for="Height">Height: </label>
+		<input type ="Height" name="Height" id="heightInput" placeholder ="100" required>cm</li><br>
+		<li><label for="Weight">Weight: </label>
+		<input type ="Weight"  name="Weight" id="weightInput" placeholder ="150" required>kg</li><br>
+        <input type="submit" onclick="createRow()" id="makeRow" value="Add Teammember"></button>
+
+    </ul>
+</form>	
+<script src="../GymMeet/MyTeam.js">
+    
+</script>		
+</body>
+</html>
