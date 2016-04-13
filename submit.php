@@ -39,6 +39,11 @@
 	die ("The passwords do not match. Please try again! <a href ='Registeration.html'> &larr; Back</a>");
 	}
 
+	//VERIFY SEX IN M, F, O
+	if ($usersex != "M" || $usersex != "m" || $usersex != "F" || $usersex != "f" || $usersex != "O" || $usersex != "o") {
+		die ("Invalid user gender. Please type one of the following! (M,F,O) <a href ='Registration.html'> &larr; Back</a>");
+	}
+	
 	//CREATE NEW COACH (Will have to update team_id when the team is created?)
 	mysql_query("INSERT INTO 'Coaches' (first_name, last_name, sex, email, phone) VALUES ('$firstname' , '$lastname', '$usersex', '$useremail','$userphone')");
 
