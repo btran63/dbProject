@@ -1,5 +1,3 @@
-<?php
-?>
 <html>
 <head>
 <title>National Gymnastic Meet Login Page</title>
@@ -19,4 +17,14 @@
 <br>
 <br>
 
-<h2>[Insert Team Name Here]</h2>
+<?php
+    echo "<h2>"
+
+    echo "</h2>"
+    echo "<table>"
+    echo "<tr>"
+    echo "<td>"
+    echo "</td>"
+    echo "</tr>"
+    echo "</table>"
+?>

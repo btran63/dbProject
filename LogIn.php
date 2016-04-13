@@ -1,5 +1,4 @@
-<?php  /*This is the php part*/
-?>
+
 <html>
 <head>
 <title>National Gymnastic Meet Login Page</title>
@@ -32,3 +31,5 @@
 </section>
 </body>
 </html>
+<?php  /*This is the php part*/
+?>

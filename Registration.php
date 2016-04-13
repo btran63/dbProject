@@ -28,7 +28,7 @@
         <li><label for="usersex">Sex</label>
         <input type="sex" name="usersex" placeholder="M,F,O" maxlength ="1" required></li><br>
         <li><label for="userphone">Phone</label>
-        <input type="phone" name="userphonw" placeholder="Phone Number" maxlength ="11" required></li><br>
+        <input type="phone" name="userphone" placeholder="Phone Number" maxlength ="11" required></li><br>
         <li><label for="usermail">Email</label>
         <input type="email" name="usermail" placeholder="yourname@email.com" required></li><br>
         <li><label for="password">Password</label>
