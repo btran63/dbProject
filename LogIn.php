@@ -1,35 +1,34 @@
-<?php
-	session_start();
-	require_once('config.php');
-	
-	if(isset($_POST[LogIn.php])){
-	$username = $_POST['usermail'];
-	$password = $_POST['password'];
-
-	//hash the password? $password = hash($password); ??
-
-	//MATCH USERNAME AND PASS
-	$stmt = $db -> prepare("SELECT * FROM Users WHERE username= $username AND hash =$password");
-		$stmt->execute(array($username));
-		$row = $stmt->fetch();
-
-
-	if ($row != '0'){ 
-	//Need to create ForgotPass.html
-		die ("Inavlid combination of Username and Password! Please try again <a href ='LogIn.html'> &larr; Back</a><br> <a href ='ForgotPass.html'>Forgot your password? </a>");
-	} else{
-	
-
-	//CHECK IF COACH OR ADMIN
-	if ($row['coach'] == 1 || $row['coach'] == "1"){
-		echo "You are now logged in, Coach.";
-	//create cookies? do coach things and stuff
-	//load coach panel form
-	} else if ($row['admin'] == 1 || $row['admin'] == "1"){
-		echo "Welcome, Admin.";
-	//create cookies? do admin things and stuff
-	//load admin panel form
-	}
-
-	}
+<?php  /*This is the php part*/
 ?>
+<html>
+<head>
+<title>National Gymnastic Meet Login Page</title>
+<link rel="stylesheet" type = "text/css" href = "main.css">
+</head>
+<body>
+<header><h1>Login</h1></header>
+
+			<ul id="menu">
+			<li><a class="active" href="Homepage.html">Home</a></li>
+			<li><a href="Login.html">Login</a></li>
+			<li><a href="Registration.html">Registration</a></li>
+			<li><a href="Contact.html">Contact</a></li>
+			<li><a href="MyTeam.html">MyTeam</a><li>
+			<li><a href="Report.html">Reports</a><li>
+			</ul>
+<br>
+<br>
+<section class="loginform cf">
+<form name="login" action="index_submit" method="get" accept-charset="utf-8">
+    <ul style = "list-style: none;">
+        <li><label for="usermail">Email</label>
+        <input type="email" name="usermail" placeholder="yourname@email.com" required></li>
+        <li><label for="password">Password</label>
+        <input type="password" name="password" placeholder="password" required></li>
+        <li>
+        <input type="submit" value="Login"></li>
+    </ul>
+</form>
+</section>
+</body>
+</html>
