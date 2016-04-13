@@ -2,17 +2,17 @@
 	session_start();
 	require_once('config.php');
 	//CHECK IF COACH REGISTRATION
-	if ($_POST('Registration.html')){
+	if ($_POST['Registration.html']){
 		
 	//SAVE TEXT VALUES IN VARIABLES
-	$firstname = $_POST('userfirstname');
-	$lastname = $_POST('userlastname');
-	$teamname = $_POST('teamname');
-	$usersex = $_POST('usersex');
-	$phone = $_POST('userphone');
-	$usermail = $_POST('usermail');
-	$password = $_POST('password');
-	$confirmpassword = $_POST('confirmpassword');
+	$firstname = $_POST['userfirstname'];
+	$lastname = $_POST['userlastname'];
+	$teamname = $_POST['teamname'];
+	$usersex = $_POST['usersex'];
+	$phone = $_POST['userphone'];
+	$usermail = $_POST['usermail'];
+	$password = $_POST['password'];
+	$confirmpassword = $_POST['confirmpassword'];
 	
 	//VERIFY USERNAME LENGTH
 	if (strlen($usermail) > 31){
@@ -60,23 +60,23 @@
 	}
 	
 	//CHECK IF TEAM MEMBER REGISTERATION
-	if ($_POST('MyTeam.html)){
+	if ($_POST['MyTeam.html']){
 	//SAVE TEXT VALUES IN VARIABLES
-		$firstname = $_POST('teammemberfirstname');
-		$lastname = $_POST('teammemberlastname');
-		$teammembersex = $_POST('teammembersex');
-		$teammemberdob = $_POST('teammemberdob');
-		$teammembermail = $_POST('teammemberemail');
-		$teammemberheight = $_POST('Height');
-		$teammemberweight = $_POST('Weight');	
-		$nationality = $_POST('teammembernationality');
+		$firstname = $_POST['teammemberfirstname'];
+		$lastname = $_POST['teammemberlastname'];
+		$teammembersex = $_POST['teammembersex'];
+		$teammemberdob = $_POST['teammemberdob'];
+		$teammembermail = $_POST['teammemberemail'];
+		$teammemberheight = $_POST['Height'];
+		$teammemberweight = $_POST['Weight'];	
+		$nationality = $_POST['teammembernationality'];
 		
 		//VERIFY SEX IN M, F, O
 		if ($teammembersex != "M" || $teammembersex != "m" || $teammembersex != "F" || $teammembersex != "f" || $teammembersex != "O" || $teammembersex != "o") {
 		die ("Invalid user gender. Please type one of the following! (M,F,O) <a href ='MyTeam.html'> &larr; Back</a>");
 		
 		//INSERT PARTICIPANT ( Need Team_ID "Select uuid from Teams where primary_coach_id = the coach who is logged in;?
-		mysql_query("INSERT INTO 'Participants' (first_name, last_name, sex, height, weight, email, nationality) VALUES ('$firstname' , '$lastname', '$teammembersex', $teammemberheight, $teammemberweight, $teammembermail, $teammembernationality)");
+		mysql_query("INSERT INTO 'Participants' ('first_name', 'last_name', 'sex', 'height', 'weight', 'email', 'nationality') VALUES ('$firstname' , '$lastname', '$teammembersex', '$teammemberheight', '$teammemberweight', '$teammembermail', '$teammembernationality')");
 
 		//ACCOUNT CREATED 
 		die("Team member added successfully!");
