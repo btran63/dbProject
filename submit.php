@@ -1,7 +1,9 @@
 <?php
 	session_start();
 	require_once('config.php');
-
+	//CHECK IF COACH REGISTRATION
+	if ($_POST('Registration.html')){
+		
 	//SAVE TEXT VALUES IN VARIABLES
 	$firstname = $_POST('userfirstname');
 	$lastname = $_POST('userlastname');
@@ -55,5 +57,12 @@
 	mysql_query("INSERT INTO 'Teams' (team_name) VALUES ('$teamname')");
 
 	die("Your account has been created!");
+	}
+	
+	//CHECK IF TEAM MEMBER REGISTERATION
+	if ($_POST('MyTeam.html)){
+	//WORKING ON IT
+
+	}
 
 ?>
