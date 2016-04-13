@@ -61,7 +61,15 @@
 	
 	//CHECK IF TEAM MEMBER REGISTERATION
 	if ($_POST('MyTeam.html)){
-	//WORKING ON IT
+	//SAVE TEXT VALUES IN VARIABLES
+		$firstname = $_POST('teammemberfirstname');
+		$lastname = $_POST('teammemberlastname');
+		$teammembersex = $_POST('teammembersex');
+		$teammemberdob = $_POST('teammemberdob');
+		$teammembermail = $_POST('teammemberemail');
+		$teammemberheight = $_POST('Height');
+		$teammemberweight = $_POST('Weight');	
+		$nationality = $_POST('teammembernationality');
 
 	}
 
