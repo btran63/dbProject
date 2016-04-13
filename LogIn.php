@@ -1,4 +1,3 @@
-
 <html>
 <head>
 <title>National Gymnastic Meet Login Page</title>
@@ -8,12 +7,12 @@
 <header><h1>Login</h1></header>
 
 			<ul id="menu">
-			<li><a class="active" href="Homepage.html">Home</a></li>
-			<li><a href="Login.html">Login</a></li>
-			<li><a href="Registration.html">Registration</a></li>
-			<li><a href="Contact.html">Contact</a></li>
-			<li><a href="MyTeam.html">MyTeam</a><li>
-			<li><a href="Report.html">Reports</a><li>
+			<li><a class="active" href="Homepage.php">Home</a></li>
+			<li><a href="Login.php">Login</a></li>
+			<li><a href="Registration.php">Registration</a></li>
+			<li><a href="Contact.php">Contact</a></li>
+			<li><a href="MyTeam.php">MyTeam</a><li>
+			<li><a href="Report.php">Reports</a><li>
 			</ul>
 <br>
 <br>
@@ -32,4 +31,8 @@
 </body>
 </html>
 <?php  /*This is the php part*/
+    $email = $_POST['usermail'];
+    $pw = $_POST['password'];
+
+    $stmt = $db-> prepare(SELECT ) 
 ?>
