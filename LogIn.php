@@ -34,5 +34,7 @@
     $email = $_POST['usermail'];
     $pw = $_POST['password'];
 
-    $stmt = $db-> prepare(SELECT ) 
+    $stmt = $db-> prepare("SELECT username FROM Users WHERE uuid=? AND hash=?") 
+    $stmt -> execute(array($email, $pw));
+    $rows = $stmt->fetch();
 ?>
