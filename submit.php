@@ -70,6 +70,16 @@
 		$teammemberheight = $_POST('Height');
 		$teammemberweight = $_POST('Weight');	
 		$nationality = $_POST('teammembernationality');
+		
+		//VERIFY SEX IN M, F, O
+		if ($teammembersex != "M" || $teammembersex != "m" || $teammembersex != "F" || $teammembersex != "f" || $teammembersex != "O" || $teammembersex != "o") {
+		die ("Invalid user gender. Please type one of the following! (M,F,O) <a href ='MyTeam.html'> &larr; Back</a>");
+		
+		//INSERT PARTICIPANT ( Need Team_ID "Select uuid from Teams where primary_coach_id = the coach who is logged in;?
+		mysql_query("INSERT INTO 'Participants' (first_name, last_name, sex, height, weight, email, nationality) VALUES ('$firstname' , '$lastname', '$teammembersex', $teammemberheight, $teammemberweight, $teammembermail, $teammembernationality)");
+
+		//ACCOUNT CREATED 
+		die("Team member added successfully!");
 
 	}
 
