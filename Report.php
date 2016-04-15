@@ -18,8 +18,10 @@
 <br>
 
 <?php
+    session_start();
+    require_once('config.php');
     echo "<h2>"
-
+    $stmt = $db -> prepare("SELECT team_name FROM Teams WHERE userid")
     echo "</h2>"
     echo "<table>"
     echo "<tr>"

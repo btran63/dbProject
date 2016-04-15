@@ -19,8 +19,8 @@
 <section class="loginform cf">
 <form name="login" action="index_submit" method="get" accept-charset="utf-8">
     <ul style = "list-style: none;">
-        <li><label for="usermail">Email</label>
-        <input type="email" name="usermail" placeholder="yourname@email.com" required></li>
+        <li><label for="username">Username</label>
+        <input type="text" name="username" placeholder="glsmith13" required></li>
         <li><label for="password">Password</label>
         <input type="password" name="password" placeholder="password" required></li>
         <li>
