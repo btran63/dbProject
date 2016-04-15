@@ -1,20 +1,14 @@
-<?php  
-    session_start();
+<?php
+    start_session();
 ?>
 <html>
-<header>
-    <title>National Gymnastic Meet Home</title>
-    <link rel="stylesheet" type = "text/css" href = "main.css">
-</header>
+<head>
+<title>National Gymnastic Meet Login Page</title>
+<link rel="stylesheet" type = "text/css" href = "main.css">
+</head>
 <body>
-    <header><a href="index.php"><img src="usable_logo.jpg"></a></header>
-        
-        <div id=nav>
-        List of Current Meets</li><br>
-        Register for a Meet</li><br>
-        Edit Meet</li><br>
-        Search Meet</li><br>
-        </div>
+<header><h1>Login</h1></header>
+
 			<ul id="menu">
 			<li><a class="active" href="index.php">Home</a></li>
 			<li><a href="login.php">Login</a></li>
@@ -39,4 +33,16 @@
 </section>
 </body>
 </html>
+<?php  /*This is the php part*/
+    $email = $_POST['usermail'];
+    $pw = $_POST['password'];
 
+    $stmt = $db-> prepare("SELECT username FROM Users WHERE uuid=? AND hash=?") 
+    $stmt -> execute(array($email, $pw));
+    $rows = $stmt->fetch();
+
+
+    if($rows!=0){
+
+    }
+?>
