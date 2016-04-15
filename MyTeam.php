@@ -1,4 +1,4 @@
-<?php			/*this is the php part */
+<?php			
 ?>
 <!doctype html>
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
@@ -302,7 +302,7 @@
 
     </ul>
 </form>	
-<script src="../GymMeet/MyTeam.js">
+<script src="../GymMeet/myteam.js">
     
 </script>		
 </body>

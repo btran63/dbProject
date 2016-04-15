@@ -1,3 +1,6 @@
+<?php
+    start_session();
+?>
 <html>
 <head>
 <title>National Gymnastic Meet Login Page</title>
@@ -7,12 +10,12 @@
 <header><h1>Login</h1></header>
 
 			<ul id="menu">
-			<li><a class="active" href="Homepage.php">Home</a></li>
-			<li><a href="Login.php">Login</a></li>
-			<li><a href="Registration.php">Registration</a></li>
-			<li><a href="Contact.php">Contact</a></li>
-			<li><a href="MyTeam.php">MyTeam</a><li>
-			<li><a href="Report.php">Reports</a><li>
+			<li><a class="active" href="index.php">Home</a></li>
+			<li><a href="login.php">Login</a></li>
+			<li><a href="registration.php">Registration</a></li>
+			<li><a href="contact.php">Contact</a></li>
+			<li><a href="myteam.php">MyTeam</a><li>
+			<li><a href="report.php">Reports</a><li>
 			</ul>
 <br>
 <br>
@@ -37,4 +40,9 @@
     $stmt = $db-> prepare("SELECT username FROM Users WHERE uuid=? AND hash=?") 
     $stmt -> execute(array($email, $pw));
     $rows = $stmt->fetch();
+
+
+    if($rows!=0){
+
+    }
 ?>

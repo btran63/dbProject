@@ -4,3 +4,4 @@ Red One standing by!
 Cover me Porkins
 Watch your six, Red Five!
 Roger, Captain!
+Go home losers.
