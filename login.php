@@ -36,28 +36,38 @@
 <?php  /*This is the php part*/
     $email = $_POST['usermail'];
     $pw = $_POST['password'];
-
-    $stmt = $db-> prepare("SELECT username FROM Users WHERE uuid=? AND hash=?") 
-    $stmt -> execute(array($email, $pw));
-    $rows = $stmt->fetch();
-
-
-    if ($row != '0'){ 
-	//Need to create ForgotUsernameORPass.html, ForgotUsernameORPass.php is uploaded
+    $stmt = $db-> prepare("SELECT username, hash, email FROM Users WHERE email=?");
+    $stmt->bind_param('ss', $email, $pw);
+    $results = $stmt->execute();
+    $userResults = $results->fetch_row();
+    if ($userResults.num_rows)
+    {
+    	$hash = $userResults[1];
+    	$validPW = password_verify($pw, $hash);
+    	if ($validPW)
+    	{
+    		$_SESSION['logged_in'] = True;
+		$_SESSION['username'] = $userResults[0];
+		$_SESSION['email'] = $userResults[2];
+		//CHECK IF COACH OR ADMIN
+		if ($userResults['coach'] == 1 || $userResults['coach'] == "1")
+		{
+			echo "You are now logged in, Coach.";
+			//create cookies? do coach things and stuff
+			//load coach panel form
+		}
+		else if ($userResults['admin'] == 1 || $userResults['admin'] == "1")
+		{
+			echo "Welcome, Admin.";
+			//create cookies? do admin things and stuff
+			//load admin panel form
+		}
+	}
+	else
+		//Need to create ForgotUsernameORPass.html, ForgotUsernameORPass.php is uploaded
 		die ("Inavlid combination of Username and Password! Please try again <a href ='LogIn.html'> &larr; Back</a><br> <a href ='ForgotUsernameOrPass.html'>Forgot your password? </a>");
-	} else{
-	
-
-	//CHECK IF COACH OR ADMIN
-	if ($row['coach'] == 1 || $row['coach'] == "1"){
-		echo "You are now logged in, Coach.";
-	//create cookies? do coach things and stuff
-	//load coach panel form
-	} else if ($row['admin'] == 1 || $row['admin'] == "1"){
-		echo "Welcome, Admin.";
-	//create cookies? do admin things and stuff
-	//load admin panel form
-	}
-
-	}
+    }
+    else
+    	//Need to create ForgotUsernameORPass.html, ForgotUsernameORPass.php is uploaded
+    	die ("Inavlid combination of Username and Password! Please try again <a href ='LogIn.html'> &larr; Back</a><br> <a href ='ForgotUsernameOrPass.html'>Forgot your password? </a>");
 ?>
