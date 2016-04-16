@@ -12,10 +12,13 @@
 
 
 	//MATCH FIRST_NAME, LAST_NAME, EMAIL, PHONE
-	$stmt = $db -> prepare("SELECT * FROM Coaches WHERE first_name = $firstname AND last_name = $lastname AND email = $usermail AND phone = $userphone;");
-		$stmt->execute(array($username));
-		$row = $stmt->fetch();
-
+	$stmt = $db -> prepare("SELECT * FROM Coaches WHERE first_name = ? AND last_name = ? AND email = ? AND phone = ?;");
+		$stmt->bindParam('1, $firstname, PDO::PARAM_STR, 25');
+		$stmt->bindParam('2, $lastname, PDO::PARAM_STR, 25');
+		$stmt->bindParam('3, $usermail, PDO::PARAM_STR, 50');
+		$stmt->bindParam('4, $userphone, PDO::PARAM_INT');
+		$results = $stmt->execute();
+		$row = $results->fetch();
 	//IF NO MATCH FOUND
 	if ($row = '0'){ 
 	//INCORRECT DATA
