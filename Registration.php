@@ -43,7 +43,7 @@
 </section>
 </body>
 </html>
-
+//NEED PASSWORD CONSTRAINTS
 <?php
 	session_start();
 	require_once('config.php');
