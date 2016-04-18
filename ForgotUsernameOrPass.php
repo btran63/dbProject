@@ -36,7 +36,6 @@
 	$username = $row['username'];
 	//NOTE: CANNOT RETURN PASSWORD! MUST RESET IF IT IS FORGOTTEN
 	$newPass = "";//randomly generate new password
-	$allowedChars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!#$%&'*+-/=?^_`{|}~";
 	$passSize = mt_rand(8,30);//password min and max length
 	for ($i = 0; $i < $passSize; $i++)
 	{
