@@ -19,6 +19,8 @@
 <section class="loginform cf">
 <form name="Registration" action="submit.php" method="post" accept-charset="utf-8">
     <ul style = "list-style: none;">
+    	<li><label for="username">Username</label>
+    	<input type="username" name="username" placeholder="UserName" required></li><br>
         <li><label for="userfirstname">First Name</label>
         <input type="firstname" name="userfirstname" placeholder="FirstName" required></li><br>
         <li><label for="userlastname">Last Name</label>
@@ -43,14 +45,15 @@
 </section>
 </body>
 </html>
-//NEED PASSWORD CONSTRAINTS
 <?php
+//need password constraints
 	session_start();
 	require_once('config.php');
-
+	require_once('charVerify.php');
 	//CHECK IF COACH REGISTRATION
 	if ($_POST('Registration.php')){
 		//SAVE TEXT VALUES IN VARIABLES
+		$username = $_POST('username');
 		$firstname = $_POST('userfirstname');
 		$lastname = $_POST('userlastname');
 		$teamname = $_POST('teamname');
@@ -61,18 +64,26 @@
 		$confirmpassword = $_POST('confirmpassword');
 	
 	//VERIFY USERNAME LENGTH
-	if (strlen($usermail) > 31){
+	if (strlen($username) > 31){
 		die ("Username must not contain more than 31 characters. Please try again! <a href ='Registration.html'> &larr; Back</a>");
 	}
-	
+	$isValid = charVerify($username);
+	if ($isValid == -1)
+			die("Username must contain only alphanumeric characters and the special characters !#$%&'*+-/=?^_`{|}~. Try again. <a href ='Registration.html'> &larr; Back</a>");
 	//VERIFY IF USER NAME ALREADY EXISTS
-		$stmt = $db -> prepare("SELECT username FROM Users WHERE username= $usermail");
-		$stmt->execute(array($usermail));
+		$stmt = $db -> prepare("SELECT username FROM Users WHERE username= $username");
+		$stmt->execute(array($username));
 		$row = $stmt->fetch();
 	if ($row != '0'){
 		die ("That username already exists. Try a different username instead! <a href ='Registration.html'> &larr; Back</a>");
 	}
-
+	//Verify if email exists
+	$stmt = $db -> prepare("SELECT email FROM Users WHERE email= ?");
+	$stmt->bindParam(1, $usermail, PDO::PARAM_STR, 50);
+	$stmt->execute();
+	$row = $stmt->fetch();
+	if ($row != '0')
+		die("Email already in use. Use another one. <a href ='Registration.html'> &larr; Back</a>");
 	//VERIFY IF TEAM NAME ALREADY EXISTS
 		$stmt = $db -> prepare("SELECT team_name FROM Teams WHERE team_name= $teamname");
 		$stmt->execute(array($teamname));
@@ -80,15 +91,19 @@
 	if ($row2 != '0'){
 		die ("That team name already exists. Try a unique team name instead! <a href ='Registration.html'> &larr; Back</a>");
 	}
-
-	
+	$isValid = charVerify($teamname);
+	if ($isValid == -1)
+		die("Team name must contain only alphanumeric characters and the special characters !#$%&'*+-/=?^_`{|}~. Try again. <a href ='Registration.html'> &larr; Back</a>");
 	//VERIFY PASSWORDS MATCH
+	$isValid = charVerify($password);
+	if ($isValid == -1)
+		die("Password must contain only alphanumeric characters and the special characters !#$%&'*+-/=?^_`{|}~. Try again. <a href ='Registration.html'> &larr; Back</a>");
 	if ($password != $confirmpassword){
 		die ("The passwords do not match. Please try again! <a href ='Registeration.html'> &larr; Back</a>");
 	}
-
+	
 	//VERIFY SEX IN M, F, O
-	if ($usersex != "M" || $usersex != "m" || $usersex != "F" || $usersex != "f" || $usersex != "O" || $usersex != "o") {
+	if ($usersex != "M" && $usersex != "m" && $usersex != "F" && $usersex != "f" && $usersex != "O" && $usersex != "o") {
 		die ("Invalid user gender. Please type one of the following! (M,F,O) <a href ='Registration.html'> &larr; Back</a>");
 	}
 
@@ -97,7 +112,7 @@
 
 
 	//CREATE NEW COACH_USER (I don't know how to hash?)
-		mysql_query("INSERT INTO 'Users' (username, hash, coach) VALUES ('$usermail' , '$password', '1')");
+		mysql_query("INSERT INTO 'Users' (username, hash, coach) VALUES ('$username' , '$password', '1')");
 
 	//CREATE NEW TEAM (Need coach ID?)
 		mysql_query("INSERT INTO 'Teams' (team_name) VALUES ('$teamname')");
