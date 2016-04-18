@@ -32,10 +32,19 @@
 	$stmt->bindParam('3, $usermail, PDO::PARAM_STR, 31');
 	$stmt->bindParam('4, $userphone, PDO::PARAM_INT');
 	$results = $stmt->execute();
-	$row = $resluts->fetch();
+	$row = $results->fetch();
 	$username = $row['username'];
 	//NOTE: CANNOT RETURN PASSWORD! MUST RESET IF IT IS FORGOTTEN
-	$newPass = 0;//randomly generate new password
+	$newPass = "";//randomly generate new password
+	$allowedChars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!#$%&'*+-/=?^_`{|}~";
+	$passSize = mt_rand(8,30);//password min and max length
+	for ($i = 0; $i < $passSize; $i++)
+	{
+		$pick = mt_rand(0,80);//location of random char in allowedChars
+		$char = $allowedChars[$pick];
+		$newPass .= $char;
+	}
+	//hash $newPass
 	mysql_query("INSERT INTO 'Users'(hash) VALUES ('$newPass')");
 
 	//SEND EMAIL TO COACH
