@@ -20,7 +20,7 @@
 	}
 	
 	//VERIFY IF USER NAME ALREADY EXISTS
-	$stmt = $db -> prepare("SELECT username FROM Users WHERE username= $usermail");
+	$stmt = $db -> prepare("SELECT username FROM Users WHERE username= $usermail;");
 	$stmt->execute(array($usermail));
 	$row = $stmt->fetch();
 	if ($row != '0'){
@@ -28,7 +28,7 @@
 	}
 
 	//VERIFY IF TEAM NAME ALREADY EXISTS
-	$stmt = $db -> prepare("SELECT team_name FROM Teams WHERE team_name= $teamname");
+	$stmt = $db -> prepare("SELECT team_name FROM Teams WHERE team_name= $teamname;");
 	$stmt->execute(array($teamname));
 	$row2 = $stmt->fetch();
 	if ($row2 != '0'){
