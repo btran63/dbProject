@@ -46,6 +46,20 @@
 	//CREATE NEW MEET
 	mysql_query("INSERT INTO 'Meets' (meet_name, start_date, end_date, capacity, zip_code, city, state, street_address) VALUES ('$meetname' , '$startdate_convert', '$enddate_convert', $capacity,'$zip_code', '$city', '$state', '$street_address')");
 	
+	//SEND EMAIL TO ALL COACHES ABOUT THE NEW MEET
+	$sql = mysql_query("select email from Coaches");
+	$recipients = array();
+	while($row = mysql_fetch_array($sql)) {
+    	$recipients[] = $row['email'];
+	}
+	$to = 'nationalgymmeet@gmail.com';
+	$subject = "New Meet: '$meetname' Has Been Scheduled!";
+	$body = "Hello! A new meet has been scheduled and is now available for registeration for your team!";
+	$headers = 'From: nationalgymmeet@gmail.com' . "\r\n" ;
+	$headers .= 'Reply-To: nationalgymmeet@gmail.com' . "\r\n";
+	$headers .= 'BCC: ' . implode(', ', $recipients) . "\r\n";
+	mail($to, $subject, $body, $headers);
+	
 	//MEET CREATED 
 	echo("New Meet has been created!");
 	}
