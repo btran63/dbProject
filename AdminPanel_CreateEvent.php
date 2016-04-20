@@ -9,6 +9,18 @@
 	$endtime = $_POST['endtime'];
 	$meetname = $_POST['meeetname']; //SHOULD HAVE A SELECT BOX OR LIST FILLED WITH ALL FUTURE MEET NAMES
 	
+	//HERE IS THE PHP CODE TO POPULATE A SELECT BOX WITH MEET NAMES OPTIONS:: TO BE USED IN THE FORM
+	//$query = "SELECT meet_name FROM Meets WHERE start_date > CURDATE();"
+	//$res = mysql_query($query);
+	//echo "<select name = 'meetname'>";
+	//while (($row = mysql_fetch_row($res)) != null)
+	//{
+	//   echo "<option value = '{$row['meet_name']}'";
+    	//echo "selected = 'selected'";
+    	//echo ">{$row['meet_name']}</option>";
+	//}
+	//echo "</select>";
+	
 	//GET MEET ID, START DATE AND END DATE FOR THE MEET NAME
 	$stmt = $db -> prepare("SELECT uuid, start_date, end_date FROM Meets WHERE meet_name= ?");
 		$stmt->execute(array($meetname));
