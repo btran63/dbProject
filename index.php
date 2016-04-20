@@ -1,6 +1,3 @@
-<?php  
-	session_start();
-?>
 <html>
 <header>
     <title>National Gymnastic Meet Home</title>
@@ -26,6 +23,39 @@
 			<br><br>
 		
         <h2>Events</h2>
-		<h3>Individual Events</h3><br><h3>Team Events</h3>
+       	<?php  
+  session_start();
+  
+  $servername = "localhost";
+  $username = "andrew";
+  $password = "password";
+  $dbname = "gymnastics";
+  
+  //Create Connections
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  //Check Connections
+  if($conn->connect_error)
+  {
+	  die("Connections failed: " .$conn->connect_error);
+  }
+   $sql = "Select name, date_started, start_time, end_time"; //query to pull the name, date, start time, end time from event table
+   $results = $conn->query($sql);
+	   echo "<table>";					//making a table to store the data 
+	   echo "<tr>";
+	   echo "<td>Event Name</td>";
+	   echo "<td>Event Date</td>";
+	   echo "<td>Start Date</td>";
+	   echo "<td>End Date</td>";
+	   echo "</tr>";
+   if ($result->num_rows > 0) 					//loops through and outputs each row
+   {
+	   while($row = $results->fetch_assoc())
+	   {
+		   echo "<tr>" .$row[name]. "&nbsp" ;	//not finished
+	   }
+   }
+   	   echo "</table>";
+?>
+		<!--<h3>Individual Events</h3><br><h3>Team Events</h3>-->
 </body>
 </html>
