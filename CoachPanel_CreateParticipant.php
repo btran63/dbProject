@@ -24,7 +24,7 @@
 		$stmt->execute(array($coachid));
 		$row = $stmt->fetch();
 		if ($row != '0'){
-		die ("The Meet Name scheduled for the given date already exists. Try a different Name or Start Date instead! <a href ='AdminPanel_CreateMeet.html'> &larr; Back</a>");
+		die ("Oops! Team not found! MAke sure you have added a Team before adding Participant! <a href ='CoachPanel_CreateParticipant.html'> &larr; Back</a>");
 		}
 		$teamid = $row['team_id'];
 
@@ -33,6 +33,6 @@
 		mysql_query("INSERT INTO 'Participants' ('first_name', 'last_name', 'sex', 'height', 'weight', 'email', 'nationality', 'team_id') VALUES ('$firstname' , '$lastname', '$teammembersex', '$teammemberheight', '$teammemberweight', '$teammembermail', '$teammembernationality','$teamid')");
 		
 		//PARTICIPANT CREATED 
-		echo ("Participant added to the team successfully!");
+		echo ("Participant added to the team successfully!  <a href ='CoachPanel_CreateParticipant.html'> Add more Participants.</a>"");
 		}
 ?>
