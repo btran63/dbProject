@@ -44,7 +44,7 @@
 
 
 	//CREATE NEW EVENT
-	mysql_query("INSERT INTO 'EVENTS' (name, date_started, start_time, end_time, meet_id) VALUES ('$eventname' , '$eventstartdate', '$starttime', '$endtime', '$meetid')");
+	mysql_query("INSERT INTO 'Events' (name, date_started, start_time, end_time, meet_id) VALUES ('$eventname' , '$eventstartdate', '$starttime', '$endtime', '$meetid')");
 	
 	//MEET CREATED 
 	echo("New Event has been created!");
