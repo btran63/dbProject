@@ -1,0 +1,80 @@
+<?php
+session_start();
+?>
+<html>
+<header>
+<title>
+Meet
+</title>
+</header>
+<link rel="stylesheet" type = "text/css" href = "main.css">
+<body>
+		<div id=nav>
+		List of Current Meets</li><br>
+		Register for a Meet</li><br>
+		Edit Meet</li><br>
+		Search Meet</li><br>
+		</div>
+			<ul id="menu">
+			<<li><a class="active" href="index.php">Home</a></li>
+			<li><a href="login.php">Login</a></li>
+			<li><a href="registration.php">Registration</a></li>
+			<li><a href="contact.php">Contact</a></li>
+			<li><a href="myteam.php">MyTeam</a><li>
+			<li><a href="report.php">Reports</a><li>
+			</ul>
+			
+			<h2>List of Current Meets</h2>
+			<table>
+			<tr><th>Meet Name &nbsp </th><th>Start Date &nbsp </th><th>End Date &nbsp </th></tr>
+			<?php
+			
+				  $servername = "localhost";
+				  $username = "andrew";
+			      $password = "password";
+				  $dbname = "gymnastics";
+			
+			//Create Connections
+				$conn = new mysqli($servername, $username, $password, $dbname);
+			//Check Connections
+				if($conn->connect_error)
+					{
+					die("Connections failed: " .$conn->connect_error);
+					}
+				
+					$sql = "Select meet_name, start_date, end_date from Meets";
+					$results = $conn->query($sql);
+					
+					if($results->num_rows > 0)
+					{
+						while($row = $results->fetch_assoc())
+						{
+							echo "<tr><td>" .$row["meet_name"]. "&nbsp </td><td>" .$row["start_date"]. "&nbsp </td><td>" .$row["end_date"]. "</td></tr>";
+						}
+					}
+					//$conn->close();
+			?>
+			</table>
+			<form action="action_page.php">
+			Meet Name: &nbsp
+			<input type = "text" name = "meetname" value = "MEETNAME"><br>
+			Start Date:&nbsp
+			<input type = "date" name = "start_date" value = "MM/DD/YY"><br>
+			End Date:&nbsp
+			<input type = "date" name = "end_date" value = "MM/DD/YY"><br>
+			Capacity:&nbsp
+			<input type = "number" name = "capacity" value = "100" min="100" max="1000"><br>
+			Zip Code:&nbsp
+			<input type = "text" name = "zipcode" value = "Zip Code"><br>
+			City:&nbsp
+			<input type = "text" name = "city" value = "City"><br>
+			State:&nbsp
+			<input type = "text" name = "state" value = "State"><br>
+			Street Name:&nbsp
+			<input type = "text" name = "streetname" value = "StreetName"><br>
+			Street Number:&nbsp
+			<input type = "text" name = "streetnumber" value = "11111"><br>
+			<input type = "submit" value = "Submit">
+ 			</form>
+</body>
+</html>
