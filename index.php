@@ -52,14 +52,14 @@
 	   echo "</tr>";
    if ($results->num_rows > 0) 					//loops through and outputs each row
    {
+   	echo "<table id = t01><tr><th>Event Name</th><th>Event Date</th><th>Start Time</th><th>End Time</th></tr>";	//Table Headers
 	   while($row = $results->fetch_assoc())
 	   {
-		   echo "<tr>" .$row["name"]. "&nbsp" .$row["date_started"]. "&nbsp" .$row["start_time"]. "&nbsp" .$row["end_time"];	//don't know why this isn't working
+		  echo "<tr><td>" .$row["name"]. "</td><td>" .$row["date_started"]. "</td><td>" .$row["start_time"]. "</td><td>" .$row["end_time"]. "</td></tr>";
 	   }
    }
    	   echo "</table>";
    	   $conn->close();
 ?>
-		<!--<h3>Individual Events</h3><br><h3>Team Events</h3>-->
 </body>
 </html>
