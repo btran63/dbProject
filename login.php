@@ -28,6 +28,8 @@
         <input type="password" name="password" placeholder="password" required></li>
         <li>
         <input type="submit" value="Login"></li>
+        <li><label for="forgorUserPass">forgotUserPass</label>
+        <input type = "submit" value = "ForgotUserNameOrPass.html"></li>
     </ul>
 </form>
 </section>
@@ -37,7 +39,7 @@
     $email = $_POST['usermail'];
     $pw = $_POST['password'];
     $stmt = $db-> prepare("SELECT username, hash, email FROM Users WHERE email=?");
-    $stmt->bind_param('ss', $email, $pw);
+    $stmt->execute($email);
     $results = $stmt->execute();
     $userResults = $results->fetch_row();
     if ($userResults.num_rows)
@@ -53,6 +55,7 @@
 		if ($userResults['coach'] == 1 || $userResults['coach'] == "1")
 		{
 			echo "You are now logged in, Coach.";
+			
 			//create cookies? do coach things and stuff
 			//load coach panel form
 		}
