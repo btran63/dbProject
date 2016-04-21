@@ -36,8 +36,12 @@
 		$char = $allowedChars[$pick];
 		$newPass .= $char;
 	}
+	$hash = password_hash($newPass, PASSWORD_BCRYPT);
+	$params = array(':hash' => $hash, ':username' => $username);
+	$db->prepare('UPDATE Users SET hash = :hash WHERE username = :username');
+	$db->execute($params);
+	// 
 	//hash $newPass
-	mysql_query("INSERT INTO 'Users'(hash) VALUES ('$newPass')");
 
 	//SEND EMAIL TO COACH
 	mail($usermail, "Your Username and Password", "Hello $firstname $lastname, \n \nUsername: $username \n Password: $newPass \n\n Sincerely,\nNational Gym Meet";
