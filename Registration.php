@@ -71,22 +71,24 @@
 	if ($isValid == -1)
 			die("Username must contain only alphanumeric characters and the special characters !#$%&'*+-/=?^_`{|}~. Try again. <a href ='Registration.html'> &larr; Back</a>");
 	//VERIFY IF USER NAME ALREADY EXISTS
-		$stmt = $db -> prepare("SELECT username FROM Users WHERE username= $username");
-		$stmt->execute(array($username));
+		$stmt = $db -> prepare("SELECT username FROM Users WHERE username= ?");
+		$param = (':username' => $username);
+		$stmt->execute($param);
 		$row = $stmt->fetch();
 	if ($row != '0'){
 		die ("That username already exists. Try a different username instead! <a href ='Registration.html'> &larr; Back</a>");
 	}
 	//Verify if email exists
 	$stmt = $db -> prepare("SELECT email FROM Users WHERE email= ?");
-	$stmt->bindParam(1, $usermail, PDO::PARAM_STR, 50);
-	$stmt->execute();
+	$param = (':usermail' => $usermail);
+	$stmt->execute($param);
 	$row = $stmt->fetch();
 	if ($row != '0')
 		die("Email already in use. Use another one. <a href ='Registration.html'> &larr; Back</a>");
 	//VERIFY IF TEAM NAME ALREADY EXISTS
 		$stmt = $db -> prepare("SELECT team_name FROM Teams WHERE team_name= $teamname");
-		$stmt->execute(array($teamname));
+		$param = (':teamname' => $teamname);
+		$stmt->execute($param;
 		$row2 = $stmt->fetch();
 	if ($row2 != '0'){
 		die ("That team name already exists. Try a unique team name instead! <a href ='Registration.html'> &larr; Back</a>");
