@@ -20,7 +20,7 @@
 
 	//SELECT FIRST PLACE SCORE AND WINNER IN THE EVENT
 	$stmt = $db -> prepare("SELECT MAX(participant_score) AS FirstPlaceScore, participant_id FROM Participants_Events WHERE event_id = ?;");
-	$stmt->execute(array($eventid));
+	$stmt->execute($eventid);
 	$row1 = $stmt->fetch();
 	if ($row1 != '0'){
 	$firstplaceparticipant = row1['participant_id'];
@@ -29,7 +29,7 @@
 
 	//SELECT SECOND PLACE SCORE AND WINNER IN THE EVENT
 	$stmt = $db -> prepare("SELECT MAX(participant_score) AS SecondPlaceScore, participant_id FROM Participants_Events WHERE participant_score < (SELECT MAX(participant_score) AS FirstPlaceScore FROM Participants_Events) AND event_id = ?;");
-	$stmt->execute(array($eventid));
+	$stmt->execute($eventid);
 	$row2 = $stmt->fetch();
 	if ($row2 != '0'){
 	$secondplaceparticipant = row2['participant_id'];
@@ -38,7 +38,7 @@
 	
 	//SELECT THIRD PLACE SCORE AND WINNER IN THE EVENT
 	$stmt = $db -> prepare("SELECT MAX(participant_score) AS ThirdPlaceScore, participant_id FROM Participants_Events WHERE participant_score < (SELECT MAX(participant_score) AS SecondPlaceScore FROM Participants_Events WHERE participant_score <(SELECT MAX(participant_score) AS FirstPlaceScore FROM Participants_Events) ) AND event_id = ?;");
-	$stmt->execute(array($eventid));
+	$stmt->execute($eventid);
 	$row3 = $stmt->fetch();
 	if ($row3 != '0'){
 	$thirdplaceparticipant = row3['participant_id'];
