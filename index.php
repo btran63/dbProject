@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <html>
 <header>
     <title>National Gymnastic Meet Home</title>
