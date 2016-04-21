@@ -23,7 +23,7 @@
 	
 	//GET MEET ID, START DATE AND END DATE FOR THE MEET NAME
 	$stmt = $db -> prepare("SELECT uuid, start_date, end_date FROM Meets WHERE meet_name= ?");
-		$stmt->execute(array($meetname));
+		$stmt->execute($meetname);
 		$row = $stmt->fetch();
 	if ($row != '0'){
 		$meetid = $row['uuid'];
