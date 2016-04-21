@@ -51,10 +51,11 @@
    {
 	   while($row = $results->fetch_assoc())
 	   {
-		   echo "<tr>" .$row[name]. "&nbsp" ;	//not finished
+		   echo "<tr>" .$row["name"]. "&nbsp" .$row["date_started"]. "&nbsp" .$row["start_time"]. "&nbsp" .$row["end_time"];	//don't know why this isn't working
 	   }
    }
    	   echo "</table>";
+   	   $conn->close();
 ?>
 		<!--<h3>Individual Events</h3><br><h3>Team Events</h3>-->
 </body>
