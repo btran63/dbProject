@@ -47,7 +47,7 @@
 	   echo "<td>Start Date</td>";
 	   echo "<td>End Date</td>";
 	   echo "</tr>";
-   if ($result->num_rows > 0) 					//loops through and outputs each row
+   if ($results->num_rows > 0) 					//loops through and outputs each row
    {
 	   while($row = $results->fetch_assoc())
 	   {
