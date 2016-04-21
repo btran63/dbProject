@@ -9,13 +9,10 @@
 	$userphone = $_POST['userphone'];
 	
 	//MATCH FIRST_NAME, LAST_NAME, EMAIL, PHONE
-	$stmt = $db -> prepare("SELECT * FROM Coaches WHERE first_name = ? AND last_name = ? AND email = ? AND phone = ?;");
-		$stmt->bindParam('1, $firstname, PDO::PARAM_STR, 25');
-		$stmt->bindParam('2, $lastname, PDO::PARAM_STR, 25');
-		$stmt->bindParam('3, $usermail, PDO::PARAM_STR, 31');
-		$stmt->bindParam('4, $userphone, PDO::PARAM_INT');
-		$results = $stmt->execute();
-		$row = $results->fetch();
+	$params = array(':first_name' => $firstname, ':last_name' => $lastname, ':email' => $usermail, ':phone' => $userphone);
+	$stmt = $db -> prepare("SELECT * FROM Coaches WHERE first_name = :first_name AND last_name = :last_name AND email = :email AND phone = :phone");
+	$results = $stmt->execute($params);
+	$row = $results->fetch();
 	//IF NO MATCH FOUND
 	if ($row = '0')
 	{ 
@@ -27,11 +24,7 @@
 	//MATCH FOUND
 	//SELECT CORRECT USERNAME AND PASSWORD
 	$stmt = $db -> prepare("SELECT * FROM Users WHERE Users.uuid = (Select uuid from Coaches WHERE first_name = ? AND last_name = ? AND email = ? AND phone = ?;");
-	$stmt->bindParam('1, $firstname, PDO::PARAM_STR, 25');
-	$stmt->bindParam('2, $lastname, PDO::PARAM_STR, 25');
-	$stmt->bindParam('3, $usermail, PDO::PARAM_STR, 31');
-	$stmt->bindParam('4, $userphone, PDO::PARAM_INT');
-	$results = $stmt->execute();
+	$results = $stmt->execute($params);
 	$row = $results->fetch();
 	$username = $row['username'];
 	//NOTE: CANNOT RETURN PASSWORD! MUST RESET IF IT IS FORGOTTEN
