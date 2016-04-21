@@ -37,6 +37,10 @@
 		$newPass .= $char;
 	}
 	$hash = password_hash($newPass, PASSWORD_BCRYPT);
+	$params = array(':hash' => $hash, ':username' => $username);
+	$db->prepare('UPDATE Users SET hash = :hash WHERE username = :username');
+	$db->execute($params);
+	// 
 	//hash $newPass
 
 	//SEND EMAIL TO COACH
