@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include 'login_views.php';
+    include 'authentication.php';
     if (isLoggedIn()){
         header('Location: index.php');
     }
