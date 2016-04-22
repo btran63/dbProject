@@ -39,7 +39,7 @@
             <li><label for="confirmpassword">Confirm Password</label>
         <input type="password" name="confirmpassword" placeholder="Confirm Password" required></li><br>
         <li>
-        <input type="submit" value="Login"></li>
+        <input type="submit" value="Register"></li>
     </ul>
 </form>
 </section>
