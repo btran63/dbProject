@@ -33,7 +33,10 @@
 			<br><br>
 			
 			// About Us
-			
+			<hr align="left" width="50%">
+                	<h2>About Us</h2>
+   			<div>National Gym Meet is a project in order to create a functional database for the database class COSC3380 for University of Houston.</div>
+   			<div>This website is a project in order to make students learn about how databases and websites function when used together.</div>
 			// About Us ending
 		
         /*<h2>Events</h2>
