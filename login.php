@@ -39,7 +39,7 @@
             
         }
     ?>
-<form name="login" action="index_submit" method='POST' accept-charset="utf-8">
+<form name="login" action="login.php" method='POST' accept-charset="utf-8">
     <ul style = "list-style: none;">
         <li><label for="username">Username</label>
         <input type="text" name="username" placeholder="glsmith13" required></li>
