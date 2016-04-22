@@ -25,6 +25,17 @@ function isLoggedIn(){
         return False;
     }
 }
+function isAdmin(){
+    if (!isset($_SESSION['admin'])){
+        return False;
+    }
+    elseif ($_SESSION['admin'] == true){
+        return True;
+    }
+    else{
+        return False;
+    }
+}
 function loginRequested(){
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         if ($_POST['loginSubmit']){
