@@ -14,6 +14,17 @@ function userExists($username){
         return False;
     }
 }
+function isLoggedIn(){
+    if (!isset($_SESSION['logged_in'])){
+        return False;
+    }
+    elseif ($_SESSION['logged_in'] == true){
+        return True;
+    }
+    else{
+        return False;
+    }
+}
 function loginRequested(){
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         if ($_POST['loginSubmit']){
