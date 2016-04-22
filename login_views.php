@@ -14,7 +14,23 @@ function userExists($username){
         return False;
     }
 }
+function loginRequested(){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if ($_POST['loginSubmit']){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    else{
+        return false;
+    }
+}
 function login($username, $password){
+    // Inputs: $username, $password
+    // Outputs: If $username and password are valid credentials, returns a null object corresponding to no error message.
+    // Otherwise, outputs a string to be output in the body of login.php
     if (userExists($username)){
         $db = connect();
         $stmt = $db->prepare('SELECT hash, admin FROM Users WHERE username = :username');
@@ -28,16 +44,21 @@ function login($username, $password){
             if ($admin){
                 $_SESSION['admin'] = true;
             }
+            else{
+                $_SESSION['admin'] = false;
+            }
             return null;
         }
         else {
-            return 'Invalid username or password!';
+            return '<p>Invalid username or password!</p>';
         }
         
     }
     else{
-        //Limiting the prospect of user enumeration by hashing the password anyway, to reduce the risk of timing-based attacks
-        password_hash('ERROR', PASSWORD_BCRYPT)
+        // Limiting the prospect of user enumeration by hashing the password anyway, to reduce the risk of timing-based attacks
+        // Also serves to throttle botnet activity.
+        password_hash('ERROR', PASSWORD_BCRYPT);
+        return '<p>Invalid username or password!</p>';
     }
 }
 ?>
