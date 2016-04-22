@@ -51,6 +51,7 @@ function login($username, $password){
         $hash = $values['hash'];
         $admin = $values['admin'];
         if (password_verify($password, $hash)){
+            $_SESSION['username'] = $username;
             $_SESSION['logged_in'] = true;
             if ($admin){
                 $_SESSION['admin'] = true;
