@@ -45,22 +45,25 @@
 	die ("The passwords do not match. Please try again! <a href ='Registeration.html'> &larr; Back</a>");
 	}
 	//CREATE NEW COACH (Will have to update team_id when the team is created?)
-	$stmt = $db -> prepare("INSERT INTO Coaches(first_name, last_name, sex, email, phone) VALUES(:firstName, :lastName, :userSex, :email, :phone)");
-	$stmt->execute(array("firstName" => $firstname, "lastName" => $lastname, "userSex" => $usersex, "email" => $useremail, "phone" => $userphone));
+	$stmt = $db -> prepare("INSERT INTO Coaches(uuid, first_name, last_name, sex, email, phone) VALUES(uuid(), :firstName, :lastName, :userSex, :email, :phone)");
+	$stmt->execute(array("firstName" => $firstname, "lastName" => $lastname, "userSex" => $usersex, "email" => $usermail, "phone" => $userphone));
 	//CREATE NEW COACH_USER 
 	$hash = password_hash($password, PASSWORD_BCRYPT);
 	$stmt = $db -> prepare("INSERT INTO Users (uuid, username, hash, coach, email) VALUES (uuid(), :user, :password, int, :email)");
 	$stmt -> execute(array("user" => $username, "email" => $usermail, "password" => $hash, "int" => '1'));
-	//CREATE NEW TEAM (Need coach ID?)
-	mysql_query("INSERT INTO 'Teams' (team_name) VALUES ('$teamname')");
-	$stmt = $db -> prepare("INSERT INTO Team (team_name) VALUES (:team)");
-	$stmt -> execute("team" => $teamname);
-	die("Your account has been created!");
+	//CREATE NEW TEAM
+  $stmt = $db -> prepare("SELECT uuid FROM Coaches AS C WHERE C.email = ?");
+  $stmt -> execute($usermail);
+  $result = $stmt->fetch();
+	$stmt = $db -> prepare("INSERT INTO Teams (uuid, team_name, primary_coach_id) VALUES (uuid(), :team, :id)");
+	$stmt -> execute("team" => $teamname, "id" => $result);
+	die ("Acount created successfully! Please login with your information. <a href ='login.php'> &larr; Back</a>");
 	}
 	
 	//CHECK IF TEAM MEMBER REGISTERATION
-	if ($_POST['MyTeam.html']){
+	if ($_POST['MyTeam.php']){
 	//SAVE TEXT VALUES IN VARIABLES
+    $coach = $_SESSION['username'];
 		$firstname = $_POST['teammemberfirstname'];
 		$lastname = $_POST['teammemberlastname'];
 		$teammembersex = $_POST['teammembersex'];
@@ -69,16 +72,16 @@
 		$teammemberheight = $_POST['Height'];
 		$teammemberweight = $_POST['Weight'];	
 		$nationality = $_POST['teammembernationality'];
-		
-		//VERIFY SEX IN M, F, O
-		if ($teammembersex != "M" || $teammembersex != "m" || $teammembersex != "F" || $teammembersex != "f" || $teammembersex != "O" || $teammembersex != "o") {
-		die ("Invalid user gender. Please type one of the following! (M,F,O) <a href ='MyTeam.html'> &larr; Back</a>");
-		
-		//INSERT PARTICIPANT ( Need Team_ID "Select uuid from Teams where primary_coach_id = the coach who is logged in;?
-		mysql_query("INSERT INTO 'Participants' ('first_name', 'last_name', 'sex', 'height', 'weight', 'email', 'nationality') VALUES ('$firstname' , '$lastname', '$teammembersex', '$teammemberheight', '$teammemberweight', '$teammembermail', '$teammembernationality')");
 
-		//ACCOUNT CREATED 
-		die("Team member added successfully!");
+		//INSERT PARTICIPANT
+    $stmt = $db -> prepare("SELECT uuid FROM Teams AS T WHERE T.primary_coach_id = (SELECT uuid FROM Coaches AS C WHERE C.email = (SELECT email FROM Users AS U WHERE U.user=?))");
+    $stmt ->execute($coach);
+    $id = $stmt->fetch();
+    $stmt = $db -> prepare("INSERT INTO Participants (first_name, last_name, sex, height, weight, nationality, team_id, email) VALUES (:first, :last, :sex, :height, :weight, :nationality, :team, :email)");
+    $stmt -> execute(array("first" => $firstname, "last" => $lastname, "sex" => $teammembersex, "height" => $teammemberheight, "weight" => $teammemberweight, "nationality" => $nationality, "team_id" => $id, "email" => $teammemberemail));
+    echo "Team member added successfully!";
+    
+		//die("Team member added successfully!");
 
 	}
 
