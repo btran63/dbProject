@@ -45,44 +45,6 @@
                     height:200px;
                     width:auto;
                 }
-            </style>    	
-            // About Us ending
-		
-        <!--<h2>Events</h2> -->
-       	<?php/*  
-  session_start();
-  
-  $servername = "localhost";
-  $username = "andrew";
-  $password = "password";
-  $dbname = "gymnastics";
-  
-  //Create Connections
-  $conn = new mysqli($servername, $username, $password, $dbname);
-  //Check Connections
-  if($conn->connect_error)
-  {
-	  die("Connections failed: " .$conn->connect_error);
-  }
-   $sql = "Select name, date_started, start_time, end_time"; //query to pull the name, date, start time, end time from event table
-   $results = $conn->query($sql);
-	   echo "<table>";					//making a table to store the data 
-	   echo "<tr>";
-	   echo "<td>Event Name</td>";
-	   echo "<td>Event Date</td>";
-	   echo "<td>Start Date</td>";
-	   echo "<td>End Date</td>";
-	   echo "</tr>";
-   if ($results->num_rows > 0) 					//loops through and outputs each row
-   {
-   	echo "<table id = t01><tr><th>Event Name</th><th>Event Date</th><th>Start Time</th><th>End Time</th></tr>";	//Table Headers
-	   while($row = $results->fetch_assoc())
-	   {
-		  echo "<tr><td>" .$row["name"]. "</td><td>" .$row["date_started"]. "</td><td>" .$row["start_time"]. "</td><td>" .$row["end_time"]. "</td></tr>";
-	   }
-   }
-   	   echo "</table>";
-   	   $conn->close();
-*/?>
+            </style>
 </body>
 </html>
