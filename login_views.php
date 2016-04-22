@@ -7,7 +7,7 @@ function userExists($username){
     $params = array(':username' => $username);
     $results = $statement->execute($params); // Retrieving the results list here.
     $db = NULL; // Closing the connection
-    if ($results->rowCount()){
+    if ($db->rowCount()){
         return True;
     }
     else{
@@ -47,7 +47,7 @@ function login($username, $password){
         $stmt = $db->prepare('SELECT hash, admin FROM Users WHERE username = :username');
         $params = array(':username' => $username);
         $results = $stmt->execute($params);
-        $values = $results->fetch(FETCH_ASSOC);
+        $values = $db->fetch(FETCH_ASSOC);
         $hash = $values['hash'];
         $admin = $values['admin'];
         if (password_verify($password, $hash)){
