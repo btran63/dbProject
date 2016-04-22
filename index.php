@@ -25,6 +25,7 @@
 			else{
 			    echo '<li><a href="logout.php">Logout</a></li>';
 			}
+			?>
 			<li><a href="registration.php">Registration</a></li>
 			<li><a href="contact.php">Contact</a></li>
 			<li><a href="myteam.php">MyTeam</a><li>
@@ -39,8 +40,8 @@
    			<div>This website is a project in order to make students learn about how databases and websites function when used together.</div>
 			// About Us ending
 		
-        /*<h2>Events</h2>
-       	<?php  
+        <!--<h2>Events</h2> -->
+       	<?php/*  
   session_start();
   
   $servername = "localhost";
@@ -74,6 +75,6 @@
    }
    	   echo "</table>";
    	   $conn->close();
-?>*/
+*/?>
 </body>
 </html>
