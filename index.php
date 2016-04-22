@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include 'index_views.php';
 ?>
 <html>
 <header>
