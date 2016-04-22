@@ -1,5 +1,15 @@
 <?php
     start_session();
+    if ($_SESSION['logged_in']){
+        header('Location: index.php');
+    }
+    include 'login_views.php';
+    if loginRequested(){
+    	$login_msg = login($_POST['username'], $_POST['password']);
+    	if isLoggedIn(){
+            header('Location: index.php');
+    	}
+    }
 ?>
 <html>
 <head>
@@ -20,14 +30,19 @@
 <br>
 <br>
 <section class="loginform cf">
-<form name="login" action="index_submit" method="get" accept-charset="utf-8">
+    <?php
+        if ($login_msg){
+            echo $login_msg;
+        }
+    ?>
+<form name="login" action="index_submit" method='POST' accept-charset="utf-8">
     <ul style = "list-style: none;">
         <li><label for="username">Username</label>
         <input type="text" name="username" placeholder="glsmith13" required></li>
         <li><label for="password">Password</label>
         <input type="password" name="password" placeholder="password" required></li>
         <li>
-        <input type="submit" value="Login"></li>
+        <input type="submit" name="loginSubmit" value="Login"></li>
         <li><label for="forgorUserPass">forgotUserPass</label>
         <input type = "submit" value = "ForgotUserNameOrPass.html"></li>
     </ul>
@@ -35,8 +50,8 @@
 </section>
 </body>
 </html>
-<?php  /*This is the php part*/
-    $email = $_POST['usermail'];
+<?php  /*This is the php part; DEPRECATED! Refer to login_views.php for the new function definitions*/
+    /*$email = $_POST['usermail'];
     $pw = $_POST['password'];
     $stmt = $db-> prepare("SELECT username, hash, email FROM Users WHERE email=?");
     $stmt->execute($email);
@@ -73,4 +88,5 @@
     else
     	//Need to create ForgotUsernameORPass.html, ForgotUsernameORPass.php is uploaded
     	die ("Inavlid combination of Username and Password! Please try again <a href ='LogIn.html'> &larr; Back</a><br> <a href ='ForgotUsernameOrPass.html'>Forgot your password? </a>");
+    	*/
 ?>
