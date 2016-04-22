@@ -1,9 +1,10 @@
 <?php
     start_session();
+    include 'login_views.php';
     if (isLoggedIn()){
         header('Location: index.php');
     }
-    include 'login_views.php';
+    
     if (loginRequested()){
     	$login_msg = login($_POST['username'], $_POST['password']);
     	if (isLoggedIn()){
