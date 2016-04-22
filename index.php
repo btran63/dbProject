@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include 'index_views.php';
+    include 'authentication.php';
 ?>
 <html>
 <header>
