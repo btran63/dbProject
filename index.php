@@ -31,9 +31,9 @@
 			</ul>
 			<br><br>
 		
-        <h2>Events</h2>
+        /*<h2>Events</h2>
        	<?php  
- /* session_start();
+  session_start();
   
   $servername = "localhost";
   $username = "andrew";
