@@ -92,12 +92,12 @@
 //STORE TEXT VALUES IN VARIABLES
 $name = $_POST['name'];
 $email = $_POST['email'];
-$subject = $_POST['topic'];
+$subject = "NGM Inquiry"
 $message = $_POST['message'];
 
 //SEND EMAIL (we should create a gmail for National Gym Meet
 mail("nationalgymmeet@gmail.com", $subject, "Name: '$name'\nEmail: '$email'\nMessage: " . $message, "");
 
-echo "Email has been sent! <a href = "Homepage.html">Goto Homepage!</a>";
+echo "Email has been sent! <a href = "index.php">Goto Homepage!</a>";
 }
 ?>
