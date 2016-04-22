@@ -32,8 +32,11 @@
 <br>
 <section class="loginform cf">
     <?php
-        if ($login_msg){
-            echo $login_msg;
+        if (isset($login_msg)){
+            if ($login_msg){
+                echo $login_msg;
+            }
+            
         }
     ?>
 <form name="login" action="index_submit" method='POST' accept-charset="utf-8">
