@@ -8,7 +8,7 @@
     <link rel="stylesheet" type = "text/css" href = "main.css">
 </header>
 <body>
-    <header><a href="index.php"><img src="usable_logo.jpg"></a></header>
+    <header><a href="index.php"><img src="./static/usable_logo.jpg"></a></header>
 		
 		<div id=nav>
 		List of Current Meets</li><br>
