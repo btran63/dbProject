@@ -1,5 +1,5 @@
 <?php
-    start_session();
+    session_start();
     include 'login_views.php';
     if (isLoggedIn()){
         header('Location: index.php');
@@ -20,14 +20,14 @@
 <body>
 <header><h1>Login</h1></header>
 
-			<ul id="menu">
-			<li><a class="active" href="index.php">Home</a></li>
-			<li><a href="login.php">Login</a></li>
-			<li><a href="registration.php">Registration</a></li>
-			<li><a href="contact.php">Contact</a></li>
-			<li><a href="myteam.php">MyTeam</a><li>
-			<li><a href="report.php">Reports</a><li>
-			</ul>
+	<ul id="menu">
+	    <li><a class="active" href="index.php">Home</a></li>
+    	<li><a href="login.php">Login</a></li>
+	    <li><a href="registration.php">Registration</a></li>
+    	<li><a href="contact.php">Contact</a></li>
+	    <li><a href="myteam.php">MyTeam</a><li>
+    	<li><a href="report.php">Reports</a><li>
+	</ul>
 <br>
 <br>
 <section class="loginform cf">
