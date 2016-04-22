@@ -17,6 +17,11 @@
         $returnValue->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $returnValue->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         return $returnValue;
+        // Usage: $db = connect();
+        // $stmt = $db->prepare(//Statement);
+        // $params = array(':datata' => $datata)
+        // $stmt->execute($params)
+        // $row = $stmt->fetch(FETCH_ASSOC)
     }    
 
 ?>
