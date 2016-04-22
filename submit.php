@@ -79,10 +79,7 @@
     $id = $stmt->fetch();
     $stmt = $db -> prepare("INSERT INTO Participants (first_name, last_name, sex, height, weight, nationality, team_id, email) VALUES (:first, :last, :sex, :height, :weight, :nationality, :team, :email)");
     $stmt -> execute(array("first" => $firstname, "last" => $lastname, "sex" => $teammembersex, "height" => $teammemberheight, "weight" => $teammemberweight, "nationality" => $nationality, "team_id" => $id, "email" => $teammemberemail));
-    echo "Team member added successfully!";
-    
-		//die("Team member added successfully!");
-
+    echo "Team member added successfully! Do you want to add another team member? <a href = 'MyTeam.php'> Yes</a><a href = 'index.php'> &larr; No</a>";
 	}
 
 ?>
