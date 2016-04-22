@@ -47,7 +47,7 @@ function login($username, $password){
         $stmt = $db->prepare('SELECT hash, admin FROM Users WHERE username = :username');
         $params = array(':username' => $username);
         $stmt->execute($params);
-        $values = $stmt->fetch(FETCH_ASSOC);
+        $values = $stmt->fetch(PDO::FETCH_ASSOC);
         $hash = $values['hash'];
         $admin = $values['admin'];
         if (password_verify($password, $hash)){
