@@ -17,7 +17,13 @@
 		</div>
 			<ul id="menu">
 			<li><a class="active" href="index.php">Home</a></li>
-			<li><a href="login.php">Login</a></li>
+			<?php
+			if (!isLoggedIn()){
+			    echo '<li><a href="login.php">Login</a></li>';
+			}
+			else{
+			    echo '<li><a href="logout.php">Logout</a></li>';
+			}
 			<li><a href="registration.php">Registration</a></li>
 			<li><a href="contact.php">Contact</a></li>
 			<li><a href="myteam.php">MyTeam</a><li>
@@ -27,7 +33,7 @@
 		
         <h2>Events</h2>
        	<?php  
-  session_start();
+ /* session_start();
   
   $servername = "localhost";
   $username = "andrew";
@@ -60,6 +66,6 @@
    }
    	   echo "</table>";
    	   $conn->close();
-?>
+?>*/
 </body>
 </html>
