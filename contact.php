@@ -92,7 +92,7 @@
 //STORE TEXT VALUES IN VARIABLES
 $name = $_POST['name'];
 $email = $_POST['email'];
-$subject = "NGM Inquiry"
+$subject = "NGM Inquiry";
 $message = $_POST['message'];
 
 //SEND EMAIL (we should create a gmail for National Gym Meet
