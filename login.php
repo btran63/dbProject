@@ -13,21 +13,27 @@
     }
 ?>
 <html>
-<head>
-<title>National Gymnastic Meet Login Page</title>
-<link rel="stylesheet" type = "text/css" href = "main.css">
-</head>
+<header>
+    <title>National Gymnastic Meet Home</title>
+    <link rel="stylesheet" type = "text/css" href = "main.css">
+</header>
 <body>
-<header><h1>Login</h1></header>
-
-	<ul id="menu">
-	    <li><a class="active" href="index.php">Home</a></li>
-    	<li><a href="login.php">Login</a></li>
-	    <li><a href="registration.php">Registration</a></li>
-    	<li><a href="contact.php">Contact</a></li>
-	    <li><a href="myteam.php">MyTeam</a><li>
-    	<li><a href="report.php">Reports</a><li>
-	</ul>
+    <header><a href="index.php"><img src="./static/new_logo.jpg" href="index.php"></a></header>
+        
+        <div id=nav>
+		<li style= "list-style-type:none"><a href="admin.php">List of Current Meets</a></li><br>
+		<li style= "list-style-type:none">Register for a Meet</li><br>
+		<li style= "list-style-type:none">Edit Meet</li><br>
+		<li style= "list-style-type:none">Search Meet</li><br>
+        </div>
+            <ul id="menu">
+            <li><a class="active" href="index.php">Home</a></li>
+            <li><a href="login.php">Login</a></li>
+            <li><a href="registration.php">Registration</a></li>
+            <li><a href="contact.php">Contact</a></li>
+            <li><a href="myteam.php">MyTeam</a><li>
+            <li><a href="report.php">Reports</a><li>
+            </ul>
 <br>
 <br>
 <section class="loginform cf">
