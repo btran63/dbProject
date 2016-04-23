@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    include 'authentication.php';
+    if (isLoggedIn()){
+        header('Location: index.php');
+    }
+?>
 <html>
 <head>
 <title>National Gymnastic Meet Registration Page</title>
@@ -47,7 +54,6 @@
 </html>
 <?php
 //need password constraints
-	session_start();
 	require_once('config.php');
 	require_once('charVerify.php');
 	//CHECK IF COACH REGISTRATION
