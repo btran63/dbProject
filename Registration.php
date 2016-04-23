@@ -27,17 +27,19 @@
 <form name="Registration" action="submit.php" method="post" accept-charset="utf-8">
     <ul style = "list-style: none;">
     	<li><label for="username">Username</label>
-    	<input type="username" name="username" placeholder="UserName" required></li><br>
+    	<input type="text" name="username" placeholder="UserName" required></li><br>
         <li><label for="userfirstname">First Name</label>
-        <input type="firstname" name="userfirstname" placeholder="FirstName" required></li><br>
+        <input type="text" name="userfirstname" placeholder="FirstName" required></li><br>
         <li><label for="userlastname">Last Name</label>
-        <input type="lastname" name="userlastname" placeholder="LastName" required></li><br>
+        <input type="text" name="userlastname" placeholder="LastName" required></li><br>
         <li><label for="teamname">Team Name</label>
-        <input type="teamname" name="teamname" placeholder="TeamName" required></li><br>
+        <input type="text" name="teamname" placeholder="TeamName" required></li><br>
         <li><label for="usersex">Sex</label>
-        <input type="sex" name="usersex" placeholder="M,F,O" maxlength ="1" required></li><br>
+        <input type="radio" name="usersex" value='M' required>Male
+        <input type="radio" name="usersex" value='F' required>Female
+        <input type="radio" name="usersex" value='O' required>Other/ Unspecified</li><br>
         <li><label for="userphone">Phone</label>
-        <input type="phone" name="userphone" placeholder="Phone Number" maxlength ="11" required></li><br>
+        <input type="text" name="userphone" placeholder="Phone Number" maxlength ="11" required></li><br>
         <li><label for="usermail">Email</label>
         <input type="email" name="usermail" placeholder="yourname@email.com" required></li><br>
         <li><label for="password">Password</label>
