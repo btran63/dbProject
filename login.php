@@ -11,6 +11,11 @@
             header('Location: index.php');
     	}
     }
+    elseif (pwRecoveryRequested(){
+        $pw = resetRandomPW($_POST['recoverUsername'])
+        $recover_msg = sendNewPassword($_POST['recoverUsername'], $pw);
+        
+    })
 ?>
 <html>
 <header>
@@ -37,6 +42,7 @@
 <br>
 <br>
 <section class="loginform cf">
+	<h2>Coach & Admin Login</h2>
     <?php
         if (isset($login_msg)){
             if ($login_msg){
@@ -46,6 +52,7 @@
         }
     ?>
 <form name="login" action="login.php" method='POST' accept-charset="utf-8">
+    <h2>Are you a coach or admin? Sign in here!</h2>
     <ul style = "list-style: none;">
         <li><label for="username">Username</label>
         <input type="text" name="username" placeholder="glsmith13" required></li>
@@ -53,9 +60,19 @@
         <input type="password" name="password" placeholder="password" required></li>
         <li>
         <input type="submit" name="loginSubmit" value="Login"></li>
-        <li><label for="forgorUserPass">forgotUserPass</label>
-        <input type = "submit" value = "ForgotUserNameOrPass.html"></li>
     </ul>
+</form>
+<form name="recovery" action="login.php" method='POST' accept-charset="utf-8">
+    <h2>Forgot your password?</h2>
+    <?php
+    if (isset($recover_msg)){
+        echo $recover_msg;
+    }
+    ?>
+	<ul style="list-tyle: none;">
+		<li><label for="username">Username</label><input type="text" name="recoverUsername" required></li>
+		<li><input type="submit" name="recoverSubmit" value="Reset Password"></li>
+	</ul>
 </form>
 </section>
 </body>
