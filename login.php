@@ -69,7 +69,7 @@
         echo $recover_msg;
     }
     ?>
-	<ul style="list-tyle: none;">
+	<ul style="list-style: none;">
 		<li><label for="username">Username</label><input type="text" name="recoverUsername" required></li>
 		<li><input type="submit" name="recoverSubmit" value="Reset Password"></li>
 	</ul>
