@@ -124,13 +124,12 @@ function getUsermailByUsername($username){
         return null;
     }
 }
-function sendNewPassword($username){
+function sendNewPassword($username, $pw){
     // Two things to consider:
     // 1. If the provided email has an account in the DB, send a new password.
     // 2. If not, send a link to the registration page, to limit user enumeration.
     $usermail = getUsermailByUsername($username);
     
-    $pw = resetRandomPW($username);
     if ($usermail != null){
         $subject = 'National Gym Meets: Password Reset';
         $header  = 'MIME-Version: 1.0' . "\r\n";
