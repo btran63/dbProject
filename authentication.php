@@ -38,7 +38,20 @@ function isAdmin(){
 }
 function loginRequested(){
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        if ($_POST['loginSubmit']){
+        if (isset($_POST['loginSubmit'])){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    else{
+        return false;
+    }
+}
+function pwRecoveryRequested(){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if (isset($_POST['recoverSubmit'])){
             return true;
         }
         else{
