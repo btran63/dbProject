@@ -105,7 +105,7 @@ function changePW($username, $newPassword){
     $stmt->execute($params);
 }
 function resetRandomPW($username){
-    $pw = random_bytes(12); // even if the username does not exist, making the runtime equivalent helps reduce enumeration risks
+    $pw = openssl_random_pseudo_bytes(12); // even if the username does not exist, making the runtime equivalent helps reduce enumeration risks
     if (userExists($username)){
         changePW($username, $pw);
     }
