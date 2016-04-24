@@ -84,4 +84,71 @@ function login($username, $password){
         return '<p>Invalid username or password!</p>';
     }
 }
+function changePW($username, $newPassword){
+    $db = connect();
+    $hash = password_hash($newPassword, PASSWORD_BCRYPT);
+    $params = array(':hash' => $hash, ':username' => $username);
+    $stmt = $db->prepare('UPDATE Users SET hash = :hash WHERE username = :username');
+    $stmt->execute($params);
+}
+function resetRandomPW($username){
+    $pw = random_bytes(12); // even if the username does not exist, making the runtime equivalent helps reduce enumeration risks
+    if (userExists($username)){
+        changePW($username, $pw);
+    }
+    return $pw;
+}
+
+function usermailExists($usermail){
+    $db = connect();
+    $stmt = $db->prepare('SELECT username FROM Users WHERE email = :usermail');
+    $params = array(':usermail' => $usermail);
+    $stmt->execute($params);
+    if ($stmt->rowCount()){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function getUsermailByUsername($username){
+    $db = connect();
+    $stmt = $db->prepare('SELECT email FROM Users WHERE username = :username');
+    $params = array(':username' => $username);
+    $stmt->execute($params);
+    if ($stmt->rowCount()){
+        $returnValue = $stmt->fetch(FETCH_ASSOC);// If the user exists, return the email
+        return $returnValue['email'];
+    } else{
+        return null;
+    }
+}
+function sendNewPassword($username){
+    // Two things to consider:
+    // 1. If the provided email has an account in the DB, send a new password.
+    // 2. If not, send a link to the registration page, to limit user enumeration.
+    $usermail = getUsermailByUsername($username);
+    
+    $pw = resetRandomPW($username);
+    if ($usermail != null){
+        $subject = 'National Gym Meets: Password Reset';
+        $header  = 'MIME-Version: 1.0' . "\r\n";
+        $header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $header .= 'To: '. $usermail . "\r\n";
+        $header .= 'From: admin@nationalgymmeet.info' . "\r\n";
+        $recipient = $usermail;
+
+        $msg = '<p>Hello, and welcome back to National Gym Meets! We are sorry that you\'ve forgotten your password! Your credentials are available below.</p>';
+        $msg = $msg . '<p>Username: <strong>' . $username . '</strong></p>';
+        $msg = $msg . '<p>Password: <strong>' . $pw . '</strong></p>';
+        
+        mail($usermail, $subject, $msg, $header);
+        return '<p>Check your email!</p>';
+    }
+    else{
+        return '<p>Check your email!</p>';
+    }
+    
+}
 ?>
